@@ -1,0 +1,287 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Pluse Store</title>
+    <link rel="stylesheet" href="styles.css">
+    <script src="https://kit.fontawesome.com/your-fontawesome-kit.js" crossorigin="anonymous"></script>
+</head>
+<body>
+    <header>
+        <h1>Pluse Store</h1>
+        <button id="admin-login-btn" class="admin-toggle">Admin Login</button>
+    </header>
+
+    <main>
+        <div id="home-tab" class="tab-content active">
+            <h2>Welcome to Pluse Store!</h2>
+            <div class="grid" id="store-items">
+                <!-- Store items will be dynamically added here -->
+            </div>
+
+            <section id="recent-releases">
+                <h2>Recent Releases</h2>
+                <div class="releases-grid">
+                    <!-- Recent releases will be dynamically added here -->
+                </div>
+            </section>
+
+            <section id="trending">
+                <h2>Trending Now</h2>
+                <div class="trending-grid">
+                    <!-- Trending items will be dynamically added here -->
+                </div>
+            </section>
+        </div>
+
+        <div id="apps-tab" class="tab-content">
+            <h2>Apps</h2>
+            <div class="grid" id="apps-items"></div>
+        </div>
+
+        <div id="games-tab" class="tab-content">
+            <h2>Games</h2>
+            <div class="grid" id="games-items"></div>
+        </div>
+
+        <div id="movies-tab" class="tab-content">
+            <h2>Movies</h2>
+            <div class="grid" id="movies-items"></div>
+        </div>
+
+        <div id="botcode-tab" class="tab-content">
+            <h2>Botcode</h2>
+            <div class="code-container">
+                <pre><code id="botcode-content">
+// Your loddercode here
+const util = require('util');
+const colors = {
+    reset: "\x1b[0m",
+    bright: "\x1b[1m",
+    dim: "\x1b[2m",
+    underscore: "\x1b[4m",
+    reverse: "\x1b[7m",
+    fg: {
+        black: "\x1b[30m",
+        red: "\x1b[31m",
+        green: "\x1b[32m",
+        yellow: "\x1b[33m",
+        blue: "\x1b[34m",
+        magenta: "\x1b[35m",
+        cyan: "\x1b[36m",
+        white: "\x1b[37m"
+    },
+    bg: {
+        black: "\x1b[40m",
+        red: "\x1b[41m",
+        green: "\x1b[42m",
+        yellow: "\x1b[43m",
+        blue: "\x1b[44m",
+        magenta: "\x1b[45m",
+        cyan: "\x1b[46m",
+        white: "\x1b[47m"
+    }
+};
+
+class Logger {
+    static formatDate() {
+        const now = new Date();
+        return `${now.toLocaleDateString()} ${now.toLocaleTimeString()}`;
+    }
+
+    static log(level, message, color) {
+        const formattedDate = this.formatDate();
+        const formattedMessage = util.format(
+            '%s[%s]%s %s%s%s',
+            color, formattedDate, colors.reset, colors.fg.white, message, colors.reset
+        );
+        console.log(formattedMessage);
+    }
+
+    static info(message) {
+        this.log('INFO', message, colors.fg.cyan);
+    }
+
+    static warn(message) {
+        this.log('WARN', message, colors.fg.yellow);
+    }
+
+    static error(message) {
+        this.log('ERROR', message, colors.fg.red);
+    }
+
+    static debug(message) {
+        this.log('DEBUG', message, colors.fg.magenta);
+    }
+
+    static success(message) {
+        this.log('SUCCESS', message, colors.fg.green);
+    }
+}
+
+module.exports = Logger;
+                </code></pre>
+                <div class="code-actions">
+                    <button class="copy-btn" data-target="botcode-content">Copy Code</button>
+                    <button class="download-btn" data-filename="botcode.js" data-target="botcode-content">Download</button>
+                </div>
+            </div>
+        </div>
+
+        <div id="scripts-tab" class="tab-content">
+            <h2>Scripts</h2>
+            <div class="code-container">
+                <pre><code id="scripts-content">
+#!/bin/bash
+echo "This is an example script"
+                </code></pre>
+                <div class="code-actions">
+                    <button class="copy-btn" data-target="scripts-content">Copy Code</button>
+                    <button class="download-btn" data-filename="script.sh" data-target="scripts-content">Download</button>
+                </div>
+            </div>
+        </div>
+
+        <div id="settings-tab" class="tab-content">
+            <h2>Settings</h2>
+            <div class="settings-grid">
+                <div class="settings-card" data-settings-tab="account">
+                    <i class="fas fa-user"></i>
+                    <h3>Account</h3>
+                    <p>Manage your account details</p>
+                </div>
+                <div class="settings-card" data-settings-tab="notifications">
+                    <i class="fas fa-bell"></i>
+                    <h3>Notifications</h3>
+                    <p>Customize your notification preferences</p>
+                </div>
+                <div class="settings-card" data-settings-tab="privacy">
+                    <i class="fas fa-lock"></i>
+                    <h3>Privacy</h3>
+                    <p>Adjust your privacy settings</p>
+                </div>
+                <div class="settings-card" data-settings-tab="appearance">
+                    <i class="fas fa-palette"></i>
+                    <h3>Appearance</h3>
+                    <p>Customize the app's look and feel</p>
+                </div>
+            </div>
+            <div id="account-settings" class="settings-content">
+                <h3>Account Settings</h3>
+                <form id="account-form">
+                    <label for="username">Username:</label>
+                    <input type="text" id="username" name="username" required>
+                    <label for="email">Email:</label>
+                    <input type="email" id="email" name="email" required>
+                    <button type="submit">Save Changes</button>
+                </form>
+            </div>
+            <div id="notifications-settings" class="settings-content">
+                <h3>Notification Settings</h3>
+                <form id="notifications-form">
+                    <label>
+                        <input type="checkbox" name="email-notifications"> Email Notifications
+                    </label>
+                    <label>
+                        <input type="checkbox" name="push-notifications"> Push Notifications
+                    </label>
+                    <button type="submit">Save Changes</button>
+                </form>
+            </div>
+            <div id="privacy-settings" class="settings-content">
+                <h3>Privacy Settings</h3>
+                <form id="privacy-form">
+                    <label>
+                        <input type="checkbox" name="profile-visibility"> Make profile public
+                    </label>
+                    <label>
+                        <input type="checkbox" name="activity-tracking"> Allow activity tracking
+                    </label>
+                    <button type="submit">Save Changes</button>
+                </form>
+            </div>
+            <div id="appearance-settings" class="settings-content">
+                <h3>Appearance Settings</h3>
+                <form id="appearance-form">
+                    <label for="theme">Theme:</label>
+                    <select id="theme" name="theme">
+                        <option value="dark">Dark</option>
+                        <option value="light">Light</option>
+                    </select>
+                    <label for="font-size">Font Size:</label>
+                    <input type="range" id="font-size" name="font-size" min="12" max="24" step="2">
+                    <button type="submit">Save Changes</button>
+                </form>
+            </div>
+        </div>
+
+        <div id="admin-tab" class="tab-content">
+            <h2>Admin Panel</h2>
+            <form id="add-item-form">
+                <input type="text" id="item-name" placeholder="Item Name" required>
+                <textarea id="item-description" placeholder="Item Description" required></textarea>
+                <input type="url" id="item-image-url" placeholder="Item Image URL" required>
+                <select id="item-category" required>
+                    <option value="">Select Category</option>
+                    <option value="apps">Apps</option>
+                    <option value="games">Games</option>
+                    <option value="movies">Movies</option>
+                </select>
+                <input type="file" id="item-file" accept="image/*,.pdf,.zip">
+                <button type="submit">Add Item</button>
+            </form>
+            <div id="existing-items">
+                <h3>Existing Items</h3>
+                <!-- Existing items will be dynamically added here -->
+            </div>
+            <button id="admin-logout-btn" class="admin-toggle">Logout</button>
+        </div>
+    </main>
+
+    <footer>
+        <nav>
+            <ul>
+                <li class="active"><a href="#home"><i class="fas fa-home"></i>Home</a></li>
+                <li><a href="#apps"><i class="fas fa-mobile-alt"></i>Apps</a></li>
+                <li><a href="#games"><i class="fas fa-gamepad"></i>Games</a></li>
+                <li><a href="#movies"><i class="fas fa-film"></i>Movies</a></li>
+                <li><a href="#botcode"><i class="fas fa-robot"></i>Botcode</a></li>
+                <li><a href="#scripts"><i class="fas fa-scroll"></i>Scripts</a></li>
+                <li><a href="#settings"><i class="fas fa-cog"></i>Settings</a></li>
+            </ul>
+        </nav>
+    </footer>
+
+    <div id="admin-login-modal" class="modal">
+        <div class="modal-content">
+            <h2>Admin Login</h2>
+            <form id="admin-login-form">
+                <input type="password" id="admin-password" placeholder="Enter admin password" required>
+                <button type="submit">Login</button>
+            </form>
+        </div>
+    </div>
+
+    <div id="edit-item-modal" class="modal">
+        <div class="modal-content">
+            <h2>Edit Item</h2>
+            <form id="edit-item-form">
+                <input type="hidden" id="edit-item-id">
+                <input type="text" id="edit-item-name" placeholder="Item Name" required>
+                <textarea id="edit-item-description" placeholder="Item Description" required></textarea>
+                <input type="url" id="edit-item-image-url" placeholder="Item Image URL" required>
+                <select id="edit-item-category" required>
+                    <option value="">Select Category</option>
+                    <option value="apps">Apps</option>
+                    <option value="games">Games</option>
+                    <option value="movies">Movies</option>
+                </select>
+                <button type="submit">Update Item</button>
+            </form>
+        </div>
+    </div>
+
+    <script src="script.js"></script>
+</body>
+</html>
